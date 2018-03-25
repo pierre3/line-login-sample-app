@@ -1,13 +1,17 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+@using System.Security.Claims;
 
 <div class="jumbotron">
     <div class="panel panel-default center-block">
         <div class="panel panel-heading">
             <div class="row">
                 <div class="col-md-10 col-sm-10 col-xs-8">
-                    <p><img src="@User.FindFirst("picture").Value" width="32" height="32" alt="User Image"> @User.Identity.Name</p>
+                    <p>
+                        <img src="@User.FindFirst("picture")?.Value" width="32" height="32" alt="User Image" />
+                        @User.Identity.Name (@User.FindFirst(ClaimTypes.Email)?.Value)
+                    </p>
                 </div>
                 <div class="col-md-2 col-sm-2 col-xs-4">
                     <a class="btn btn-default" role="button" asp-area="" asp-controller="Account" asp-action="Logout">Logout</a>
