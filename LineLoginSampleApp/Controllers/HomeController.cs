@@ -20,13 +20,9 @@ namespace LineLoginSampleApp.Controllers
             lineSettings = options.Value;
         }
 
+        [Authorize]
         public IActionResult Index()
         {
-            if (!User.Identity.IsAuthenticated)
-            {
-                return Redirect("Account/Login");
-            }
-
             return View();
         }
 
